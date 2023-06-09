@@ -1,0 +1,591 @@
+/* SETUP  
+   ============================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  color: #555;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: ".";
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* REUSEABLE COMPONENT  
+   ============================================================================= */
+
+/* ----- HEADER-h ----- */
+h1,
+h2,
+h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+  /* letter-spacing: 1.5px; */
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 250%;
+  word-spacing: 5px;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-size: 150%;
+  word-spacing: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 1.5px;
+}
+
+h2:after {
+  content: "";
+  display: block;
+  width: 250px;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #bd7407;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 110%;
+  margin-bottom: 15px;
+}
+
+/* ----- SECTION ----- */
+section {
+  padding: 80px 0;
+}
+
+.box {
+  padding: 1%;
+  margin-bottom: 15px;
+}
+
+.box img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* ----- PARAGRAPH ----- */
+.long-copy {
+  width: 70%;
+  margin-left: 15%;
+  line-height: 135%;
+}
+
+.box p {
+  font-size: 90%;
+  line-height: 130%;
+}
+
+/* limit row width */
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* ----- ICON ----- */
+.icon-big {
+  display: block;
+  font-size: 300%;
+  color: #bd7407;
+  margin-bottom: 10px;
+}
+
+.icon-small {
+  display: inline-block;
+  font-size: 120%;
+  color: #bd7407;
+  text-align: center;
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 25px;
+}
+
+/* ----- ICON ----- */
+a:link,
+a:visited {
+  color: #bd7407;
+  text-decoration: none;
+  border-bottom: 1px solid #bd7407;
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+
+a:hover,
+a:active {
+  color: gray;
+  border-bottom: 1px solid transparent;
+}
+
+/* ----- BUTTONS ----- */
+.btn:link,
+.btn:visited,
+input[type="submit"] {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 200px;
+  font-weight: 300;
+  text-decoration: none;
+  border: 1px solid #bd7407;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  margin-right: 15px; /* add */
+}
+
+.btn-std:link,
+.btn-std:visited,
+input[type="submit"] {
+  background-color: #bd7407;
+  color: #fff;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+  color: #bd7407;
+}
+
+.btn:hover,
+.btn:active,
+input[type="submit"]:hover,
+input[type="submit"]:active {
+  background-color: #e48509;
+  border: 1px solid #e48509;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+  color: #fff;
+  background-color: #bd7407;
+}
+
+/* SECTIONS 0 HEADER
+   ============================================================================= */
+
+header {
+  background-image: linear-gradient(#000000e1, #000000b3),
+    url(./img/brewing.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.header-text-box {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  float: left;
+  margin-top: 20px;
+}
+
+.logo-black {
+  display: none;
+  height: 50px;
+  width: auto;
+  float: left;
+  margin-top: 5px;
+}
+
+.main-nav {
+  float: right;
+  list-style: none;
+  margin-top: 50px;
+}
+
+.main-nav li {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+/* select with animated line */
+.main-nav li a:link,
+.main-nav li a:visited {
+  border: 0; /*reset default of <a> tag */
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 90%;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.main-nav li a:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  /* background-color: #16c473 ; */
+  background-color: #bd7407;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.main-nav li a:hover::before,
+.main-nav li a:active::before {
+  transform: scaleX(1);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fffffff5;
+  box-shadow: 0 2px 2px;
+  z-index: 9999;
+}
+
+.sticky .main-nav {
+  margin-top: 16px;
+}
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited {
+  color: #555;
+}
+
+.sticky .logo {
+  display: none;
+}
+
+.sticky .logo-black {
+  display: block;
+}
+
+/* SECTIONS 1 FEATURES
+   ============================================================================= */
+
+.section-feature .long-copy {
+  margin-bottom: 30px;
+}
+
+/* SECTIONS 2 MENU
+   ============================================================================= */
+
+.section-menu {
+  padding: 0;
+}
+
+.menu-show {
+  list-style: none;
+  /* width: 100%; */
+}
+
+.menu-show li {
+  display: block;
+  float: left;
+  width: 25%;
+}
+
+.menu-img {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.menu-img img {
+  opacity: 0.7;
+  width: 100%;
+  height: auto;
+  transform: scale(1.2);
+  transition: transform 0.5s ease, opacity 0.5s;
+}
+.menu-img img:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+/* SECTIONS 3 THE MOBILE APP
+   ============================================================================= */
+
+.section-app {
+  background-color: #e0e0e0;
+}
+
+.app-box:first-child {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.app-box:last-child {
+  margin-top: 50px;
+  padding-left: 8%;
+  /* width: 35%; */
+}
+
+.app-step {
+  margin-bottom: 15px;
+}
+
+.app-step h3 {
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 400;
+  text-decoration: none;
+  border: 1px solid #bd7407;
+  color: #bd7407;
+  width: 45px;
+  height: 45px;
+  padding-top: 9px;
+  margin-bottom: 10px;
+}
+
+.app-img {
+  width: 80%;
+  margin-bottom: 40px;
+}
+
+.app-logo {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.app-logo img {
+  height: 45px;
+  width: auto;
+}
+
+.section-app .app-logo a:link,
+.section-app .app-logo a:visited {
+  border: 0; /*reset default of <a> tag */
+}
+
+/* SECTIONS 4 Shops and roasting plants
+   ============================================================================= */
+
+.loc-detail {
+  margin-bottom: 10px;
+}
+
+/* SECTIONS 5 Customer comments
+   ============================================================================= */
+
+.section-customer {
+  background-image: linear-gradient(#000000bd, #000000bd),
+    url(./img/fresh_bean.jpg);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background-attachment: fixed;
+  /* height: 100vh; */
+}
+
+blockquote {
+  padding: 2%;
+  font-style: italic;
+  line-height: 140%;
+  position: relative;
+  margin-top: 40px;
+}
+
+blockquote:before {
+  content: "\201C";
+  font-size: 500%;
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+
+cite {
+  display: block;
+  font-size: 90%;
+  margin-top: 25px;
+}
+
+cite img {
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* SECTIONS 6 Sign up and pricing
+   ============================================================================= */
+
+.section-signup {
+  background-color: #e0e0e0;
+}
+
+.signup-box {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 90%;
+  margin-left: 5%;
+  box-shadow: 2px 2px 4px #afafaf;
+}
+
+.signup-box div {
+  border-bottom: 1px solid #ddd;
+  padding: 25px;
+}
+
+.plan-price {
+  font-size: 300%;
+  font-weight: 100;
+  color: #bd7407;
+}
+
+.plan-price span {
+  font-size: 30%;
+  font-weight: 300;
+}
+
+.signup-box ul {
+  list-style: none;
+}
+
+.signup-box ul li {
+  padding: 5px 0;
+}
+
+.signup-box div:first-child {
+  /* text-align: center; */
+  background-color: #f0f0f0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.signup-box div:last-child {
+  text-align: center;
+  border: none;
+}
+
+/* SECTIONS 7 Contact form
+   ============================================================================= */
+
+.contact-form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="checkbox"] {
+  margin: 10px 5px 10px 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+/* SECTIONS 8 FOOTER
+   ============================================================================= */
+
+footer {
+  background-color: #333;
+  padding: 20px;
+}
+
+footer p {
+  color: #888;
+  text-align: center;
+  font-size: 90%;
+  margin-top: 20px;
+}
+
+.footer-nav {
+  list-style: none;
+  float: left;
+}
+
+.social-nav {
+  list-style: none;
+  float: right;
+}
+
+.footer-nav li,
+.social-nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-nav li:last-child,
+.social-nav li:last-child {
+  margin: 0;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-nav li a:link,
+.social-nav li a:visited {
+  color: #888;
+  border: 0;
+}
+
+.social-nav li a:link,
+.social-nav li a:visited {
+  font-size: 160%;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+  color: #ddd;
+}
+
+.ion-social-facebook:hover,
+.ion-social-facebook:active {
+  color: #3b5998;
+  transition: color 0.2s;
+}
+
+.ion-social-twitter:hover,
+.ion-social-twitter:active {
+  color: #1da1f2;
+  transition: color 0.2s;
+}
+
+.ion-social-googleplus:hover,
+.ion-social-googleplus:active {
+  color: #dc4e41;
+  transition: color 0.2s;
+}
+
+.ion-social-instagram:hover,
+.ion-social-instagram:active {
+  color: #bc2a8d;
+  transition: color 0.2s;
+}
